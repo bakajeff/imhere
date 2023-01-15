@@ -3,7 +3,7 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
-	ScrollView,
+	FlatList,
 } from "react-native";
 import { Participant } from "../../components/Participant";
 import { styles } from "./style";
@@ -47,15 +47,24 @@ export function Home() {
 				</TouchableOpacity>
 			</View>
 
-			<ScrollView showsVerticalScrollIndicator={false}>
-				{participants.map((participant) => (
+			<FlatList
+				data={participants}
+				keyExtractor={(item) => item}
+				renderItem={({ item }) => (
 					<Participant
-						key={participant}
-						name={participant}
+						key={item}
+						name={item}
 						onRemove={() => handleParticipantRemove("Rodrigo")}
 					/>
-				))}
-			</ScrollView>
+				)}
+				showsVerticalScrollIndicator={false}
+				ListEmptyComponent={() => (
+					<Text style={styles.listEmptyText}>
+						Ninguém chegou no evento ainda? Adicione participantes a sua lista
+						de presença
+					</Text>
+				)}
+			/>
 		</View>
 	);
 }
