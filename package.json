@@ -8,7 +8,7 @@
 		"ios": "expo start --ios",
 		"web": "expo start --web",
 		"lint": "rome check src/",
-		"format": "rome format --write --skip-errors src/"
+		"format": "rome format src/ --write --skip-errors"
 	},
 	"dependencies": {
 		"expo": "~47.0.12",
